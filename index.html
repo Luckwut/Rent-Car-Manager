@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>Rental Mobil Manager</title>
+</head>
+<body>
+    <div class="backdrop"></div>
+
+    <!-- SIDEBAR -->
+    <aside>
+        <div class="logoArea">
+            <button class="closeSidebar"><span class="material-symbols-outlined">close</span></button>
+            <div class="logo">
+                <span class="material-symbols-outlined">assistant_navigation</span>
+                <span class="material-symbols-outlined">token</span>
+            </div>
+        </div>
+        <nav class="navigationArea">
+            <button class="active"><span class="material-symbols-outlined">home</span>Home</button>
+            <button><span class="material-symbols-outlined">garage</span>Rent Car</button>
+            <button><span class="material-symbols-outlined">book_4</span>Booked Car</button>
+            <button><span class="material-symbols-outlined">unarchive</span>Unavailable Car</button>
+            <button><span class="material-symbols-outlined">timeline</span>Rental History</button>                   
+        </nav>
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <header class="navbar">
+            <button class="openSidebar"><span class="material-symbols-outlined">grid_view</span></button>            
+        </header>
+
+        <div class="mainContent">
+
+            <!-- HOME PAGE -->
+            <div class="home-Page page">
+                <h1>Selamat Datang</h1>
+                <div>
+                    <span class="material-symbols-outlined">calendar_month</span>
+                    <span>Tanggal</span>
+                </div>
+                <p class="tanggalDisplay">Senin, 1 Januari 0000 | 00:00:00</p>
+                <div>
+                    <span class="material-symbols-outlined">database</span>
+                    <span>Database Mobil</span>
+                </div>
+                <table class="totalTable">
+                    <tr>
+                        <td>Jumlah Mobil:</td>
+                        <td>{Data}</td>
+                    </tr>
+                    <tr>
+                        <td>Status Available:</td>
+                        <td>{Data}</td>
+                    </tr>
+                    <tr>
+                        <td>Status Booked:</td>
+                        <td>{Data}</td>
+                    </tr>
+                    <tr>
+                        <td>Status Unavailable:</td>
+                        <td>{Data}</td>
+                    </tr>
+                </table>
+                <table class="databaseTable">
+                    <thead>
+                        <tr>
+                            <th>Nama Mobil</th>
+                            <th>Tipe</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- INSERT DATABASE DATA -->
+                    </tbody>
+                </table>
+                <div class="localStorageSettings">
+                    <button class="dummyLocalStorage BTN">
+                        <span class="material-symbols-outlined">upload_file</span>
+                        Tambahkan Dummy Data ke Local Storage
+                    </button>
+                    <button class="clearLocalStorage BTN">
+                        <span class="material-symbols-outlined">delete_forever</span>
+                        Hapus Semua Data di Local Storage
+                    </button>
+                </div>
+            </div>
+
+            <!-- RENT PAGE -->
+            <div class="rentCar-Page page">
+                <h1>Available Car List</h1>
+                <div class="container">
+                    <button class="addCar-OpModal BTN"> <!-- ADD NEW CAR BUTTON -->
+                        <span class="material-symbols-outlined">add_circle</span>
+                        <span>Tambahkan Mobil Baru</span>
+                    </button>
+                </div>
+                <div class="grid-container availableCarList">
+                    <!-- INSERT CAR CARD -->
+                    <!-- <div class="mobilCard" data-index="1">
+                        <div>
+                            <button class="editCar-OpModal">
+                                <span class="material-symbols-outlined">edit_square</span>
+                            </button>
+                            <img src="https://www.motortrend.com/uploads/sites/10/2019/09/2020-chevrolet-suburban-1500-ls-suv-angular-front.png" onerror="imgError(this)">
+                            <span class="material-symbols-outlined imgIcon">directions_car</span>
+                        </div>
+                        <div>
+                            <p>Chevrolet Suburban</p>
+                            <span>SUV</span>
+                        </div>
+                        <div>
+                            <p>Harga Sewa</p>
+                            <p><sup>Rp</sup>450.000 / Hari</p>
+                        </div>
+                        <div>
+                            <button class="rentCar-OpModal">Sewa Mobil</button>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+
+            <!-- BOOKED PAGE -->
+            <div class="bookedCar-Page page">
+                <h1>Booked Car List</h1>
+                <div class="grid-container bookedCarList">
+                    <!-- INSERT CAR CARD -->
+                </div>
+            </div>
+
+            <!-- UNAVAILABLE PAGE -->
+            <div class="unavailableCar-Page page">
+                <h1>Unavailable Car List</h1>
+                <div class="grid-container unavailableCarList">
+                    <!-- INSERT CAR CARD -->
+                </div>
+            </div>
+
+            <!-- HISTORY PAGE -->
+            <div class="rentalHistory-Page page">
+                <h1>Rental History</h1>
+                <p class="tanggalDisplay">Senin, 1 Januari 0000 | 00:00:00</p>
+                <table class="historyTable">
+                    <thead>
+                        <th>No</th>
+                        <th>Nama Mobil</th>
+                        <th>Status</th>
+                        <th>Waktu</th>
+                    </thead>
+                    <tbody>
+                        <!-- INSERT HISTORY -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- MODAL/DIALOG -->
+    <!-- ADD CAR DIALOG -->
+    <dialog class="carDialog dialog">
+        <div class="header">
+            <h1>Tambahkan Mobil Baru</h1>
+            <button class="closeModal">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="main">
+            <form>
+                <label for="addCar-NameInput">Nama Mobil</label>
+                <input type="text" id="addCar-NameInput" placeholder="Isi Nama Mobil" required>
+                <label for="addCar-PriceInput">Harga Sewa Mobil / Hari</label>
+                <input type="number" id="addCar-PriceInput" min="0" placeholder="Isi Harga Mobil" required>
+                <label for="addCar-ImgInput">Link Gambar Mobil &lpar;Opsional&rpar;</label>
+                <input type="text" id="addCar-ImgInput" placeholder="https://example/car.png">
+                <label for="addCar-TypeInput">Tipe Mobil</label>
+                <select id="addCar-TypeInput" required>
+                    <option value="Sedan">Sedan</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Hatchback">Hatchback</option>
+                    <option value="Coupe">Coupe</option>
+                    <option value="Minivan">Minivan</option>
+                    <option value="Truck">Truck</option>
+                    <option value="Other" selected>Lainnya</option>
+                </select>
+            </form>
+        </div>
+        <div class="footer">
+            <button class="addCar BTN">Tambahkan Mobil</button>
+            <button class="closeModal BTN">Cancel</button>
+        </div>
+    </dialog>
+
+    <!-- EDIT CAR DIALOG -->
+    <dialog class="editDialog dialog">
+        <div class="header">
+            <h1>Edit Data Mobil</h1>
+            <button class="closeModal">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="main">
+            <form>
+                <label for="editCar-NameInput">Nama Mobil</label>
+                <input type="text" id="editCar-NameInput" placeholder="Isi Nama Mobil" required>
+                <label for="editCar-PriceInput">Harga Sewa Mobil / Hari</label>
+                <input type="number" id="editCar-PriceInput" min="0" placeholder="Isi Harga Mobil" required>
+                <label for="editCar-ImgInput">Link Gambar Mobil &lpar;Opsional&rpar;</label>
+                <input type="text" id="editCar-ImgInput" placeholder="https://example/car.png">
+                <label for="editCar-TypeInput">Tipe Mobil</label>
+                <select id="editCar-TypeInput" required>
+                    <option value="Sedan">Sedan</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Hatchback">Hatchback</option>
+                    <option value="Coupe">Coupe</option>
+                    <option value="Minivan">Minivan</option>
+                    <option value="Truck">Truck</option>
+                    <option value="Other" selected>Lainnya</option>       
+                </select>
+                <div>
+                    <p><b>Status</b></p>
+                    <input type="radio" name="status" id="editCar-avaRadio" value="available"> <label for="editCar-avaRadio">Available</label>
+                    <input type="radio" name="status" id="editCar-unaRadio" value="unavailable"> <label for="editCar-unaRadio">Unavailable</label>
+                </div>
+            </form>
+        </div>
+        <div class="footer">
+            <button class="editCar BTN">Edit Mobil</button>
+            <button class="deleteCar BTN">Hapus Mobil</button>
+            <button class="closeModal BTN">Cancel</button>
+        </div>
+    </dialog>
+
+    <dialog class="rentDialog dialog">
+        <div class="header">
+            <h1>Sewa {CarName}</h1>
+            <button class="closeModal">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="main">
+            <form>
+                <label for="rentCar-NameInput">Nama Lengkap</label>
+                <input type="text" id="rentCar-NameInput" placeholder="Nama Anda" required>
+                <label for="rentCar-EmailInput">Email</label>
+                <input type="email" id="rentCar-EmailInput" placeholder="example@gmail.com" required>
+                <label for="rentCar-NoTelpInput">Nomor Telepon</label>
+                <input type="tel" id="rentCar-NoTelpInput" pattern="\+[0-9]{1,3}\s[0-9\s]+" placeholder="+62 123456789" required>
+                <label for="rentCar-PickupInput">Tanggal Penjemputan &lpar;Pickup Date&rpar;</label>
+                <input type="date" id="rentCar-PickupInput" required>
+                <label for="rentCar-ReturnInput">Tanggal Pengembalian &lpar;Return Date&rpar;</label>
+                <input type="date" id="rentCar-ReturnInput" required>
+                <div>
+                    <input type="checkbox" name="driver" id="rentCar-DriverInput">
+                    <label for="rentCar-DriverInput">Sewa Driver <span>&lpar;+<sup>Rp </sup>200.000 / Hari&rpar;</span></label>
+                </div>
+            </form>
+        </div>
+        <div class="info">
+            <table>
+                <tr>
+                    <td>Harga Sewa Mobil / Hari</td>
+                    <td>:</td>
+                    <td class="rentPricePerDay"><sup>Rp </sup>000.000</td>
+                </tr>
+                <tr>
+                    <td>Waktu Peminjaman Mobil</td>
+                    <td>:</td>
+                    <td class="rentTotalDays">0 Hari</td>
+                </tr>
+                <tr>
+                    <td>Total Harga Sewa</td>
+                    <td>:</td>
+                    <td class="rentTotalPrice"><sup>Rp </sup>000.000</td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            <button class="rentCar BTN">Sewa Mobil</button>
+            <button class="closeModal BTN">Cancel</button>
+        </div>
+    </dialog>
+
+    <dialog class="bookedDialog dialog">
+        <div class="header">
+            <h1>Detail Booking</h1>
+            <button class="closeModal">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="image">
+            <img src="">
+            <span class="material-symbols-outlined imgIcon">directions_car</span>
+        </div>
+        <div class="main">
+            <div class="detailMobil">
+                <p>Nama Mobil</p>
+                <p><!-- Nama --></p>
+                <p>Tipe Mobil</p>
+                <p><!-- Tipe --></p>
+                <p>Driver</p>
+                <p><!-- Driver -->></p>
+                <p>Harga Sewa Mobil / Hari</p>
+                <p><!-- Harga --></p>
+            </div>
+            <hr>    
+            <div class="detailUser">
+                <p>Nama Penyewa</p>
+                <p><!-- Nama --></p>
+                <p>Email</p>
+                <p><!-- Email --></p>
+                <p>Nomor Telepon</p>
+                <p><!-- NoTel --></p>
+                <p>Tanggal Peminjaman</p>
+                <p><!-- Pickup --></p>
+                <p>Tanggal Pengembalian</p>
+                <p><!-- Return --></p>
+                <p>Total Hari</p>
+                <p><!-- Hari --></p>
+                <p>Total Harga Sewa</p>
+                <p><!-- TotalHarga --></p>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="returnCar BTN">Kembalikan Mobil</button>
+            <button class="closeModal BTN">Cancel</button>
+        </div>
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+</html>

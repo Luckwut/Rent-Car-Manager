@@ -1,0 +1,654 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+}
+
+/* SIDEBAR/ ASIDE CONTENT */
+aside {
+    margin-left: 0;
+    transition: margin-left 0.5s ease;
+    background-color: #fff;
+    z-index: 100;
+    border-right: 1px solid #ccc;
+    width: 220px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
+aside div {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+aside div button.closeSidebar {
+    display: none;
+    position: absolute;
+    right: 2px;
+    top: 5px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+aside div.logoArea button span.material-symbols-outlined {
+    font-size: 2em;
+}
+
+aside div.logoArea div.logo {
+    position: relative;
+}
+
+aside div.logoArea div.logo span.material-symbols-outlined:nth-child(1) {
+    position: absolute;
+    font-size: 1.5em;
+}
+
+aside div.logoArea div.logo span.material-symbols-outlined:nth-child(2) {
+    font-size: 5em;
+    transform: rotate(0.9turn);
+}
+
+aside div.logoArea div.logo span.material-symbols-outlined {
+    background: -webkit-linear-gradient(#345fe0, #df25c6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+aside nav {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 5px 0 0;
+}
+
+aside nav button {
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: #fff;
+    border-radius: 0 5px 5px 0;
+    padding: 8px 11px 8px;
+    margin-bottom: 4px;
+    text-align: start;
+    font-weight: 550;
+    transition: 0.2s ease;
+}
+
+.active {
+    border-right: 5px solid #224abe;
+}
+
+aside nav button:hover {
+    background-color: #ececec;
+    padding-left: 15px;
+}
+
+aside nav button span.material-symbols-outlined {
+    margin-right: 5px;
+    font-size: 2em;
+}
+
+
+/* MAIN CONTENT */
+/* NAVBAR */
+.navbar {
+    display: none;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 10px;
+    padding-left: 17px;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 50;
+    transition: 0.3s ease-in-out;
+}
+
+.navbar button.openSidebar {
+    border: none;
+    background-color: #fff;
+    transition: padding-left 0.5s ease;
+    cursor: pointer;
+}
+
+
+/* MAIN */
+main {
+    flex: 1;
+    overflow-y: auto;
+    padding-left: 220px;
+}
+
+.mainContent {
+    padding: 5px 10px;
+}
+
+.mainContent div.page {
+    display: none;
+}
+
+.page h1 {
+    border-bottom: 4px solid #224abe;
+}
+
+
+/* HOME PAGE */
+.tanggalDisplay {
+    margin: 10px 0 15px;
+}
+
+.home-Page > div:not(.localStorageSettings) {
+    display: flex;
+    align-items: center;
+    font-weight: 550;
+}
+
+.home-Page > div span:nth-child(2) {
+    font-size: 1.3em;
+    border-bottom: 2px solid #345fe0;
+}
+
+.home-Page > div > span.material-symbols-outlined {
+    color: #224abe;
+    font-size: 2.2em;
+}
+
+.totalTable tr td:nth-child(1) {
+    font-weight: 550;
+}
+
+.available, .booked, .unavailable {
+    font-weight: 550;
+}
+
+.available {
+    color: rgb(0, 117, 0);
+}
+
+.booked {
+    color: rgb(0, 44, 126);
+}
+
+.unavailable {
+    color: rgb(173, 46, 0);
+}
+
+/* TABLE STYLING */
+:is(.databaseTable, .historyTable) {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #345fe0;
+}
+
+:is(.databaseTable, .historyTable) tr th {
+    background-color: #345fe0;
+    color: white;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+:is(.databaseTable, .historyTable) tr td {
+    border-right: 1px solid #345fe0;
+    font-size: clamp(0.8rem, 4vw, 1rem);
+}
+
+:is(.databaseTable, .historyTable) tr:nth-child(odd) td {
+    background-color: #c6c4da;
+}
+
+:is(.databaseTable, .historyTable) tr:nth-child(even) td {
+    background-color: #afb3da;
+}
+
+.historyTable :is(thead th:nth-child(1), tbody td:nth-child(1)) {
+    width: 1em;
+    text-align: center;
+    font-weight: 550;
+}
+
+.localStorageSettings {
+    margin-top: 10px;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dummyLocalStorage {
+    background-color: #345fe0;
+}
+
+.clearLocalStorage {
+    background-color: red;
+}
+
+:is(.dummyLocalStorage, .clearLocalStorage):hover {
+    opacity: 0.8;
+    transform: translateX(2px);
+}
+
+/* PAGE ALL STYLING */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 260px);
+    grid-gap: 5px;
+    justify-content: center;
+}
+
+.page label {
+    display: block;
+    font-weight: 550;
+}
+
+.page select {
+    width: 100%;
+    padding: 10px 5px;
+    border-radius: 5px;
+}
+
+.BTN {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    /* padding: 10px 15px; */
+    padding: clamp(6px, 2vw, 10px) clamp(11px, 2vw, 15px);
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.5s ease;
+}
+
+
+/* CARDS */
+.mobilCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+    height: fit-content;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    margin: 5px;
+}
+
+.mobilCard > div:nth-child(1) {
+    position: relative;
+    height: 140px;
+    border-bottom: 1px solid #ccc;
+    background-color: #eeeeee;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobilCard > div:nth-child(1) img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px 10px 0 0;
+}
+
+.mobilCard > div:nth-child(1) .editCar-OpModal {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+}
+
+.mobilCard > div:nth-child(1) .editCar-OpModal:hover span.material-symbols-outlined {
+    color: orangered;
+}
+
+.material-symbols-outlined.imgIcon { /* ONERROR IMAGE */
+    display: none;
+    font-size: 8em;
+    color: #ccc;
+}
+
+.mobilCard > div:nth-child(2) {
+    padding: 4px 6px;
+}
+
+.mobilCard :is(div:nth-child(2) p, div:nth-child(3) p) {
+    margin: 0;
+}
+
+.mobilCard > div:nth-child(2) p {
+    font-weight: bold;
+    font-size: 1.1em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.mobilCard > div:nth-child(2) span {
+    font-size: 0.7em;
+    letter-spacing: 1px;
+    color: white;
+    padding: 3px 10px;
+    /* background-color: #345edb; */
+    background-image: linear-gradient(to left, #489be0, #224abe);
+    border-radius: 10px;
+}
+
+.mobilCard > div:nth-child(3) {
+    border-top: 1px solid #ccc;
+    padding: 4px 8px;
+}
+
+.mobilCard > div:nth-child(3) p:nth-child(1) {
+    font-size: 0.9em;
+    font-variant-caps: petite-caps;
+    font-weight: 550;
+}
+
+.mobilCard > div:nth-child(3) p:nth-child(2) {
+    text-align: end;
+    font-weight: 600;
+    font-size: 1.25em;
+    color: #224abe;
+}
+
+.mobilCard > div:nth-child(4) {
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    padding: 4px 10px;
+}
+
+.mobilCard > div:nth-child(4) button {
+    width: 100%;
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 7px;
+}
+
+.mobilCard > div:nth-child(4) .rentCar-OpModal {
+    background-image: linear-gradient(to left, #224abe, #4885e0, #224abe);
+    color: white;
+    transition: background-position 1s ease;
+    background-size: 200%;
+    background-position: right;
+    border: none;
+}
+
+.mobilCard > div:nth-child(4) .rentCar-OpModal:hover {
+    background-position: left;
+}
+
+.mobilCard > div:nth-child(4) :is(.bookedCar-OpModal, .statusAva) {
+    background-color: transparent;
+    border: 1px solid #345fe0;
+    color: #345fe0;
+    font-weight: 550;
+    transition: 0.3s linear;
+}
+
+.mobilCard > div:nth-child(4) :is(.bookedCar-OpModal, .statusAva):hover {
+    color: white;
+    border: 1px solid white;
+    background-color: #4885e0;
+}
+
+.cardRoundEnd {
+    background-color: #345fe0;
+    border-radius: 0 0 10px 10px;
+}
+
+
+/* RENT CAR PAGE */
+.rentCar-Page > div.container {
+    padding: 5px 0 15px;
+}
+
+.rentCar-Page .addCar-OpModal {
+    background-color: #345fe0;
+    /* background-image: linear-gradient(to right, #3734e0 40%, #345fe0 50%);
+    background-size: 300%;
+    background-position: right; */
+}
+
+.rentCar-Page .addCar-OpModal:hover {
+    background-color: #224abe;
+}
+
+/* BOOKED CAR PAGE */
+
+
+/* UNAVAILABLE CAR PAGE */
+
+
+/* RENTAL HISTORY PAGE */
+/* NONE */
+
+/* MODAL/DIALOG */
+/* ADD CAR DIALOG */
+.dialog {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: clamp(250px, 70%, 600px);
+}
+
+.dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.dialog .header {
+    display: flex;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.dialog .header h1 {
+    margin: 0;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    border-bottom: 3px solid #224abe;
+}
+
+.dialog .header button {
+    background-color: transparent;
+    display: grid;
+    place-items: center;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+}
+
+.dialog .header button:focus {
+    outline: none;
+}
+
+.dialog .main {
+    padding-right: 15px;
+}
+
+.dialog .main form > :is(label, input, select) {
+    display: block;
+    width: 100%;
+}
+
+.dialog .main form label {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+.dialog .main form > :is(input, select) {
+    margin-bottom: 5px;
+    padding: 5px 0 5px 5px;
+}
+
+.dialog .main form.submit > :is(input:invalid, select:invalid) {
+    border: 2px solid orangered;
+    background-color: rgb(255, 243, 240);
+}
+
+.dialog .footer {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+.dialog .footer .closeModal.BTN {
+    background-color: red;
+}
+
+.dialog .footer :is(.addCar.BTN, .editCar.BTN, .deleteCar.BTN, .returnCar, .rentCar.BTN, .closeModal):hover {
+    opacity: 0.8;
+}
+
+.editDialog .main form > div > p {
+    margin: 13px 0 0;
+}
+
+.carDialog .footer .addCar.BTN {
+    background-color: #345fe0;
+}
+
+.editDialog .footer .editCar {
+    background-color: #345fe0;
+}
+
+.editDialog .footer .deleteCar {
+    background-color: orangered;
+}
+
+.rentDialog > .main > form > div > label > span {
+    color: #224abe;
+}
+
+.rentDialog > .main > form > div {
+    margin-bottom: 8px;
+}
+
+.rentDialog > .info {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+.rentDialog > .info > table {
+    border-collapse: collapse;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+.rentDialog > .info > table tr td:nth-child(2) {
+    font-weight: 550;
+    padding: 0 5px;
+}
+
+.rentDialog > .info > table tr :is(td:nth-child(3), td:nth-child(4)) {
+    color: #345fe0;
+    font-weight: 550;
+}
+
+.driverFee::after {
+    display: inline-block;
+    margin-left: 5px;
+    content: '(+ 200.000)';
+}
+
+.rentDialog > .footer > .rentCar.BTN {
+    background-color: #345fe0;
+}
+
+.bookedDialog > .image {
+    position: relative;
+    height: 200px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.bookedDialog > .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.bookedDialog > .main > :is(.detailMobil, .detailUser) p:nth-child(odd) {
+    font-weight: 550;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    margin: 0;
+}
+
+.bookedDialog > .main > :is(.detailMobil, .detailUser) p:nth-child(even) {
+    margin: 0 0 10px;
+    color: #224abe;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+.returnCar.BTN {
+    background-color: #224abe;
+}
+
+/* MOBILE/RESPONSIVE */
+@media screen and (max-width: 1290px) {
+    .navbar {
+        display: flex;
+    }
+
+    aside {
+        margin-left: -220px;
+    }
+
+    aside div button.closeSidebar {
+        display: block;
+    }
+
+    main {
+        padding-left: 0;
+    }
+
+    aside.sidebar-open {
+        margin-left: 0;
+    }
+    
+    .navbar.sidebar-open {
+        margin-top: -50px;
+    }
+
+    .mainContent {
+        margin-top: 35px;
+    }
+
+    .backdrop {
+        display: none;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        width: 100%;
+        height: 100%;
+        z-index: 40;
+    }
+    
+    .backdrop.sidebar-open {
+        display: block;
+    }    
+}
