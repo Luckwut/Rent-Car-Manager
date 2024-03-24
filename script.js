@@ -1,3 +1,4 @@
+// DUMMY DATA
 const DummyCarsData = [
     { name: "Toyota Camry", status: "available", type: "Sedan", price: 700000, img: "https://www.motortrend.com/uploads/sites/10/2021/02/2021-toyota-camry-se-sedan-angular-front.png" },
     { name: "Honda Accord", status: "available", type: "Sedan", price: 770000, img: "https://www.motortrend.com/uploads/sites/10/2022/01/2021-honda-accord-lx-sedan-angular-front.png" },
@@ -62,7 +63,7 @@ function imgError(img) {
 }
 
 
-// [Local Storage Option] //
+// [Dummy Local Storage Option] //
 // ------------------------------------------------------------------------- //
 const dummyLocalStorageBTN = document.querySelector('.dummyLocalStorage.BTN');
 const clearLocalStorageBTN = document.querySelector('.clearLocalStorage.BTN');
@@ -423,8 +424,7 @@ function editCarInputs(index) {
 
 function updateCarData(data, index, inputs, radios) {
     const [nameInput, priceInput, imgInput, typeInput] = inputs;
-
-    data[index] = {
+    const editedData = {
         name: nameInput.value,
         price: Number(priceInput.value),
         img: imgInput.value,
@@ -432,8 +432,17 @@ function updateCarData(data, index, inputs, radios) {
         status: [...radios].find(radio => radio.checked).value
     };
 
+    const previousStatus = data[index].status;
+    const newStatus = editedData.status;
+
+    let historyMessage = "Edited";
+    if (newStatus !== previousStatus) {
+        historyMessage += newStatus === "available" ? " (Set Available)" : " (Set Unavailable)";
+    }
+    addHistory(historyMessage, editedData.name);
+
+    data[index] = editedData;
     saveLocalStorage('carData', data);
-    addHistory("Edited", data[index].name);
 }
 
 function deleteCarData(data, index, button) {
@@ -632,7 +641,7 @@ function setStatusToAvailable(target) {
         data[dataIndex].status = "available";
         saveLocalStorage('carData', data);
         renderEverything();
-        addHistory("Edited", data[dataIndex].name);
+        addHistory("Edited (Set Available)", data[dataIndex].name);
     }
 }
 
@@ -650,13 +659,13 @@ function closeModal(target) {
 const tanggalDisplay = document.querySelectorAll('.tanggalDisplay');
 function displayDate() {
     let date = new Date;
-    dateFormat = date.toLocaleDateString("id-ID", {
+    let dateFormat = date.toLocaleDateString("id-ID", {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
         day: 'numeric'
     });
-    timeFormat = date.toLocaleTimeString([], { hour12: false });
+    let timeFormat = date.toLocaleTimeString([], { hour12: false });
     tanggalDisplay.forEach(display => 
         display.textContent = `${dateFormat} | ${timeFormat}`
     );
