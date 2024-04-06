@@ -301,10 +301,11 @@ function toggleAside() {
     document.querySelector('.backdrop').classList.toggle('sidebar-open');
 }
 
+const buttons = document.querySelectorAll('aside nav button');
 function changePage(target) {
     let clickedButton = target.closest('button');
     if (clickedButton) {
-        document.querySelectorAll('aside nav button').forEach(btn => {
+        buttons.forEach(btn => {
             btn.classList.remove('active');
         });
         clickedButton.classList.add('active');
@@ -313,7 +314,6 @@ function changePage(target) {
     }
 }
 
-const buttons = document.querySelectorAll('aside nav button');
 const pages = document.querySelectorAll('main > div.mainContent div.page');
 function showActivePage() {
     pages.forEach((page, index) => {
